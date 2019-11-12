@@ -67,7 +67,7 @@ public class Nasa {
                             roverService.move(rover);
                         }else{
                             System.out.println(rover.getxCoordinate() + " " + rover.getYCoordinate() + " " + rover.getFaceDirection().name()+" RIP");
-                            System.exit(1);
+                            break;
                         }
                         break;
                     default:
