@@ -63,7 +63,12 @@ public class Nasa {
                         roverService.changeDirection(rover, MoveType.R);
                         break;
                     case M:
-                        if (roverService.canMove(rover, mars)) roverService.move(rover);
+                        if (roverService.canMove(rover, mars)) {
+                            roverService.move(rover);
+                        }else{
+                            System.out.println(rover.getxCoordinate() + " " + rover.getYCoordinate() + " " + rover.getFaceDirection().name()+" RIP");
+                            System.exit(1);
+                        }
                         break;
                     default:
                         System.exit(1);

@@ -131,4 +131,33 @@ public class NasaTest {
         nasa.startProcess(scanner);
     }
 
+    public void shouldWriteLastPositionAndRIPWithOutOfBoundCommand(){
+        Scanner scanner = mock(Scanner.class);
+
+        doAnswer(new Answer() {
+            private int count = 0;
+
+            public Object answer(InvocationOnMock invocation) {
+                if (count == 0) {
+                    count += 1;
+                    return "5 5";
+                }
+                if (count == 1) {
+                    count += 1;
+                    return "3 3 E";
+                }
+                if (count == 2) {
+                    count += 1;
+                    return "MMRMMLMRRM";
+                }
+                return "";
+            }
+        }).when(scanner).nextLine();
+
+        nasa.startProcess(scanner);
+
+        verify(scanner, times(11)).nextLine();
+
+    }
+
 }
